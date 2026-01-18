@@ -6,7 +6,7 @@ from FisherYates import fisherYates
 from MergeSort import mergeSort
 
 from time import perf_counter_ns
-from tqdm import tqdm
+# from tqdm import tqdm
 from typing import Callable
 import sys
 # quickSort has too much recursion (up to 4096!)
@@ -35,7 +35,7 @@ def testAlgorithm(algorithm : Callable[[list], list],
     # note: tqdm is entirely to make the console look nice 
     # and to report the progress of the program.
     # it does not need to be added to other languages' programs
-    for i in tqdm(range(reps)):
+    for i in range(reps):
         # shuffle the input array
         array = [e for e in range(arrayLength)]
         fisherYates(array)
