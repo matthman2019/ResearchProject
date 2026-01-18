@@ -28,13 +28,10 @@ def writeToFile(timeList : list,
 # tests an algorithm reps number of times
 def testAlgorithm(algorithm : Callable[[list], list], 
                   reps : int = 100, 
-                  arrayLength : int = 2000):
+                  arrayLength : int = 4096):
     # list of times for each sort to complete
     timeList = []
 
-    # note: tqdm is entirely to make the console look nice 
-    # and to report the progress of the program.
-    # it does not need to be added to other languages' programs
     for i in range(reps):
         # shuffle the input array
         array = [e for e in range(arrayLength)]
@@ -42,7 +39,8 @@ def testAlgorithm(algorithm : Callable[[list], list],
         startTime = perf_counter_ns()
         algorithm(array)
         endTime = perf_counter_ns()
-        timeList.append(endTime - startTime)
+        timeList.append((endTime - startTime) / 1000000)
+        print(i)
     return timeList
 
 

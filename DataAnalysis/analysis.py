@@ -18,7 +18,7 @@ def openFile(filePath : Path) -> dict:
                 continue
 
             try:
-                line = int(line)
+                line = float(line)
             except ValueError:
                 continue
 
@@ -27,6 +27,18 @@ def openFile(filePath : Path) -> dict:
     return returnDict
 
 if __name__ == "__main__":
-    fileDict = openFile(Path("/home/matthman2019/ResearchProject/DataAnalysis/PythonOutput.txt"))
-    plt.bar(list(fileDict.keys()), list(map(mean, fileDict.values())))
+    pythonDict = openFile(Path("/home/matthman2019/ResearchProject/DataAnalysis/WrongComputerPythonOutput.txt"))
+    javascriptDict = openFile(Path("/home/matthman2019/ResearchProject/DataAnalysis/WrongComputerJavascriptOutput.txt"))
+
+    fig, (ax1, ax2) = plt.subplots(1, 2)
+    
+    ax1.bar(list(pythonDict.keys()), list(map(mean, pythonDict.values())), color="blue")
+    ax1.set_title("Python Output")
+    ax1.set_ylim(0, 850)
+    ax2.bar(list(javascriptDict.keys()), list(map(mean, javascriptDict.values())), color="red")
+    ax2.set_title("Javascript Output")
+    ax2.set_ylim(0, 850)
+
+    print(list(map(mean, pythonDict.values())))
+    print(list(map(mean, javascriptDict.values())))
     plt.show()
