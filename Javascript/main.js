@@ -193,14 +193,14 @@ function mergeSort(array, left=0, right=-1) {
     return array;
 }
 
-// javascript can't write to files (if run from a web browser, at least.)
-// because of this, I will need to use console.log() to get my results.
-// this means that the fileName parameter is useless.
-// I will keep it for consistency, however.
-function writeToFile(timeList, algorithmName, fileName) {
-    console.log("====" + algorithmName + "====");
+// I though javascript couldn't write files, but it CAN with node.js!
+// gemini is hard carrying this function
+
+const fsPromises = require('fs/promises');
+function writeToFile(timeList, algorithmName, fileName="/home/matthman2019/ResearchProject/Javascript/JavascriptOutput.txt") {
+    fsPromises.appendFile(fileName, "====" + algorithmName + "====\n", 'utf-8');
     for (const time of timeList) {
-        console.log(time);
+        fsPromises.appendFile(fileName, time.toString() + "\n", 'utf-8');
     }
 }
 
