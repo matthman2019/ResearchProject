@@ -17,7 +17,7 @@ function swap(array, i, j) {
 
 function fisherYates(array) {
     for (let i = array.length-1; i > 0; i--) {
-        j = nextNumber() % array.length;
+        j = nextNumber() % (i + 1);
         swap(array, i, j);
     };
     return array;
@@ -57,11 +57,22 @@ function maximum(array) {
     return max;
 }
 
+// I have to have this because of Lua.
+// In Lua's (dis)honor, I'm naming this makeTable
+// instead of makeArray or the like.
+function makeTable(length) {
+    let returnTable = [];
+    for (let i = 0; i < length; i++) {
+        returnTable.push(0);
+    }
+    return returnTable;
+}
+
 function countingSort(array, exp1) {
     n = array.length;
 
-    output = new Array(n).fill(0);
-    count = new Array(10).fill(0);
+    output = makeTable(n);
+    count = makeTable(10);
 
     for (let i = 0; i < n; i++) {
         // javascript doesn't have floor division like python
@@ -141,8 +152,8 @@ function merge(array, left, middle, right) {
     let n1 = middle - left + 1;
     let n2 = right - middle;
 
-    L = Array(n1).fill(0);
-    R = Array(n2).fill(0);
+    L = makeTable(n1);
+    R = makeTable(n2);
 
     for (let i = 0; i < n1; i++) {
         L[i] = array[left + i];
@@ -185,7 +196,7 @@ function mergeSort(array, left=0, right=-1) {
     }
 
     if (left < right) {
-        let middle = Math.floor(left + (right - left) / 2);
+        let middle = Math.floor((right + left) / 2);
         mergeSort(array, left, middle);
         mergeSort(array, middle+1, right);
         merge(array, left, middle, right);
@@ -218,6 +229,7 @@ function testAlgorithm(algorithm, reps=100, arrayLength = 4096) {
     }
     return timeList
 }
+
 
 function main() {
     writeToFile(testAlgorithm(quickSort), "Quick Sort");

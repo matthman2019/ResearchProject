@@ -1,5 +1,6 @@
 # taken from https://www.geeksforgeeks.org/python/python-program-for-merge-sort/
 # Edited by Matthew Zielinski
+from RadixSort import makeTable
 
 def merge(array : list, left : int, middle : int, right : int):
     # create lengths of the 2 arrays that are being merged
@@ -7,8 +8,8 @@ def merge(array : list, left : int, middle : int, right : int):
     n2 = right - middle
 
     # initialize left and right arrays
-    L = [0] * n1
-    R = [0] * n2
+    L = makeTable(n1)
+    R = makeTable(n2)
 
     # essentially list splicing
     for i in range(n1):
@@ -53,7 +54,7 @@ def mergeSort(array : list, left : int = 0, right : int = -1) -> list:
     
     # the divide and conquer part
     if left < right:
-        middle = left + (right - left) // 2
+        middle = (right + left) // 2
         mergeSort(array, left, middle)
         mergeSort(array, middle + 1, right)
         merge(array, left, middle, right)
@@ -61,10 +62,7 @@ def mergeSort(array : list, left : int = 0, right : int = -1) -> list:
     return array
 
 if __name__ == "__main__":
-    array =[e for e in range(250)]
     from random import shuffle
-    shuffle(array)
-    print("Given array is:", array)
-
-    mergeSort(array)
-    print("Sorted array is:", array)
+    for i in range(20):
+        print(mergeSort([e for e in range(30)]))
+    

@@ -5,16 +5,23 @@
 
 from Max import maximum
 
+# I have to make this function because of lua
+def makeTable(length):
+    returnTable = []
+    for i in range(length):
+        returnTable.append(0)
+    return returnTable
+
 # a necessary prerequisite for radix sort
 def countingSort(array : list, exp1 : int):
 
     n = len(array)
 
     # The output array elements that will have sorted array
-    output = [0] * n
+    output = makeTable(n)
 
     # initialize count array as 0
-    count = [0] * 10
+    count = makeTable(10)
 
     # Store count of occurrences in count[]
     for i in range(0, n):
@@ -65,7 +72,11 @@ def radixSort(array : list) -> list:
     return array
 
 if __name__ == "__main__":
+
     from random import shuffle
     arr = [e for e in range(0, 200, 2)]
     shuffle(arr)
     print(radixSort(arr))
+
+
+    #countingSort([1, 2, 22, 33, 43, 303, 5, 99, 10], 1)
