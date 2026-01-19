@@ -8,7 +8,7 @@
 -- this is a source of error.
 
 local lastGenerated = 1
-local m = 2 ^ 31
+local m = 2 ^ 31 - 1
 local a = 7 ^ 5
 
 local function nextNumber()
@@ -257,6 +257,8 @@ local function testAlgorithm(algorithm, reps, arrayLength)
     local timeList = {}
 
     for i = 1, reps, 1 do
+        -- this doesn't match the pseudocode, it's not a builtin like python.
+        -- it's not timed, however, so it will not affect the end result.
         local array = makeTableWithIndexedKeys(arrayLength)
         fisherYates(array)
         local startTime = os.clock()

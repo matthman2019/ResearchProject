@@ -2,7 +2,7 @@
 
 // Lehmer Random Number Generator
 let lastGenerated = 1;
-let m = 2 ** 31
+let m = 2 ** 31 - 1
 let a = 7 ** 5
 function nextNumber() {
     lastGenerated = lastGenerated * a % m;
