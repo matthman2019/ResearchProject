@@ -33,7 +33,7 @@ if __name__ == "__main__":
     pythonDict = openFile(Path("/home/matthman2019/ResearchProject/DataAnalysis/WrongComputer2PythonOutput.txt"))
     javascriptDict = openFile(Path("/home/matthman2019/ResearchProject/DataAnalysis/WrongComputer4JavascriptOutput.txt"))
     luaDict = openFile(Path("/home/matthman2019/ResearchProject/DataAnalysis/WrongComputerLuaOutput.txt"))
-    CPPDict = openFile(Path("/home/matthman2019/ResearchProject/DataAnalysis/WrongComputerC++Output.txt"))
+    CPPDict = openFile(Path("/home/matthman2019/ResearchProject/DataAnalysis/WrongComputer2C++Output.txt"))
 
     fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2)
     graphHeight = 750
@@ -48,7 +48,7 @@ if __name__ == "__main__":
     ax3.set_title("Lua Output")
     ax3.set_ylim(0, graphHeight)
     ax4.bar(list(CPPDict.keys()), list(map(mean, CPPDict.values())), color="green")
-    ax4.set_title("C++ Output")
+    ax4.set_title("C++ Output")bv 
     ax4.set_ylim(0, graphHeight)
 
     print(list(map(mean, pythonDict.values())))
