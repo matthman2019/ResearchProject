@@ -207,7 +207,7 @@ function mergeSort(array, left=0, right=-1) {
 // gemini is hard carrying this function
 
 const fsPromises = require('fs/promises');
-function writeToFile(timeList, algorithmName, fileName="/home/matthman2019/ResearchProject/Javascript/JavascriptOutput.txt") {
+function writeToFile(timeList, algorithmName, fileName="JavascriptOutput.txt") {
     fsPromises.appendFile(fileName, "====" + algorithmName + "====\n", 'utf-8');
     for (const time of timeList) {
         fsPromises.appendFile(fileName, time.toString() + "\n", 'utf-8');

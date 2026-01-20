@@ -234,7 +234,7 @@ public class Main {
     }
 
     public static void writeToFile(ArrayList<Double> timeList, String algorithmName) {
-        writeToFile(timeList, algorithmName, "/home/matthman2019/ResearchProject/Java/JavaOutput.txt");
+        writeToFile(timeList, algorithmName, "JavaOutput.txt");
     }
 
     // Java doesn't really like callbacks the way python can. Interfaces are a good substitute.

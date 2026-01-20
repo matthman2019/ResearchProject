@@ -30,14 +30,14 @@ def openFile(filePath : Path) -> dict:
 
 
 if __name__ == "__main__":
-    pythonDict = openFile(Path("/home/matthman2019/ResearchProject/DataAnalysis/WrongComputer2PythonOutput.txt"))
-    javascriptDict = openFile(Path("/home/matthman2019/ResearchProject/DataAnalysis/WrongComputer4JavascriptOutput.txt"))
-    luaDict = openFile(Path("/home/matthman2019/ResearchProject/DataAnalysis/WrongComputerLuaOutput.txt"))
-    CPPDict = openFile(Path("/home/matthman2019/ResearchProject/DataAnalysis/WrongComputer2C++Output.txt"))
-    javaDict = openFile(Path("/home/matthman2019/ResearchProject/DataAnalysis/WrongComputerJavaOutput.txt"))
+    pythonDict = openFile(Path("PythonOutput.txt"))
+    javascriptDict = openFile(Path("JavascriptOutput.txt"))
+    luaDict = openFile(Path("LuaOutput.txt"))
+    CPPDict = openFile(Path("C++Output.txt"))
+    javaDict = openFile(Path("JavaOutput.txt"))
 
     fig, ((ax1, ax2, ax3), (ax4, ax5, ax6)) = plt.subplots(2, 3)
-    graphHeight = 300
+    graphHeight = 500
     
     ax1.bar(list(pythonDict.keys()), list(map(mean, pythonDict.values())), color="blue")
     ax1.set_title("Python Output")

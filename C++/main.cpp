@@ -231,7 +231,7 @@ vector<int> mergeSort(vector<int>& array, int left = 0, int right = -1) {
     return array;
 }
 
-void writeToFile(vector<double> timeList, string algorithmName, string fileName = "/home/matthman2019/ResearchProject/C++/C++Output.txt") {
+void writeToFile(vector<double> timeList, string algorithmName, string fileName = "C++Output.txt") {
     ofstream File(fileName, std::ios::app);
     File << "====" << algorithmName << "====" << endl;
     for (double time : timeList) {
