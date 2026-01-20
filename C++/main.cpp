@@ -118,8 +118,7 @@ void countingSort(vector<int>& array, int exp1) {
         count[index % 10] -= 1;
     }
 
-    int i = 0;
-    for (int i = 0; i < array.size(); i++) {
+    for (int i = 0; i < n; i++) {
         array[i] = output[i];
     }
 }

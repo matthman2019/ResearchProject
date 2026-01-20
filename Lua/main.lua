@@ -128,7 +128,7 @@ local function countingSort(array, exp1)
         count[(index % 10) + 1] = count[(index % 10) + 1] - 1
     end
 
-    for i = 1, #array, 1 do
+    for i = 1, n, 1 do
         array[i] = output[i]
     end
     return array

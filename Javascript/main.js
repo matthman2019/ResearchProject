@@ -91,8 +91,7 @@ function countingSort(array, exp1) {
         count[index % 10] -= 1;
     }
 
-    i = 0;
-    for (let i = 0; i < array.length; i++) {
+    for (let i = 0; i < n; i++) {
         array[i] = output[i];
     }
 }

@@ -34,9 +34,10 @@ if __name__ == "__main__":
     javascriptDict = openFile(Path("/home/matthman2019/ResearchProject/DataAnalysis/WrongComputer4JavascriptOutput.txt"))
     luaDict = openFile(Path("/home/matthman2019/ResearchProject/DataAnalysis/WrongComputerLuaOutput.txt"))
     CPPDict = openFile(Path("/home/matthman2019/ResearchProject/DataAnalysis/WrongComputer2C++Output.txt"))
+    javaDict = openFile(Path("/home/matthman2019/ResearchProject/DataAnalysis/WrongComputerJavaOutput.txt"))
 
-    fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2)
-    graphHeight = 750
+    fig, ((ax1, ax2, ax3), (ax4, ax5, ax6)) = plt.subplots(2, 3)
+    graphHeight = 300
     
     ax1.bar(list(pythonDict.keys()), list(map(mean, pythonDict.values())), color="blue")
     ax1.set_title("Python Output")
@@ -48,11 +49,16 @@ if __name__ == "__main__":
     ax3.set_title("Lua Output")
     ax3.set_ylim(0, graphHeight)
     ax4.bar(list(CPPDict.keys()), list(map(mean, CPPDict.values())), color="green")
-    ax4.set_title("C++ Output")bv 
+    ax4.set_title("C++ Output")
     ax4.set_ylim(0, graphHeight)
+    ax5.bar(list(javaDict.keys()), list(map(mean, javaDict.values())), color="orange")
+    ax5.set_title("Java Output")
+    ax5.set_ylim(0, graphHeight)
+
 
     print(list(map(mean, pythonDict.values())))
     print(list(map(mean, javascriptDict.values())))
     print(list(map(mean, luaDict.values())))
     print(list(map(mean, CPPDict.values())))
+    print(list(map(mean, javaDict.values())))
     plt.show()

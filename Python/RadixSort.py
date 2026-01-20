@@ -42,8 +42,7 @@ def countingSort(array : list, exp1 : int):
 
     # Copying the output array to array[],
     # so that array now contains sorted numbers
-    i = 0
-    for i in range(0, len(array)):
+    for i in range(0, n):
         array[i] = output[i]
 
 
