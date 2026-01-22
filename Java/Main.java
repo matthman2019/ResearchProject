@@ -166,6 +166,10 @@ public class Main {
         return array;
     }
 
+    public static ArrayList<Integer> quickSortWrapper(ArrayList<Integer> array) {
+        return quickSort(array, 0, -1);
+    }
+
     public static void merge(ArrayList<Integer> array, int left, int middle, int right) {
         int n1 = middle - left + 1;
         int n2 = right - middle;
@@ -219,6 +223,11 @@ public class Main {
         return array;
     }
 
+    public static ArrayList<Integer> mergeSortWrapper(ArrayList<Integer> array, int left, int right) {
+        return mergeSort(array, 0, -1);
+    }
+    
+
     public static void writeToFile(ArrayList<Double> timeList, String algorithmName, String fileName) {
         // java is forcing me to use try and except here
         try {
@@ -258,10 +267,10 @@ public class Main {
 
     public static void main(String[] args) {
         //SortingAlgorithm quickSort = ;
-        writeToFile(testAlgorithm((array) -> quickSort(array, 0, -1)), "Quick Sort");
+        writeToFile(testAlgorithm((array) -> quickSortWrapper(array)), "Quick Sort");
         writeToFile(testAlgorithm((array) -> insertionSort(array)), "Insertion Sort");
         writeToFile(testAlgorithm((array) -> radixSort(array)), "Radix Sort");
-        writeToFile(testAlgorithm((array) -> mergeSort(array, 0, -1)), "Merge Sort");
+        writeToFile(testAlgorithm((array) -> mergeSortWrapper(array)), "Merge Sort");
         writeToFile(testAlgorithm((array) -> bubbleSort(array)), "Bubble Sort");
 
     }

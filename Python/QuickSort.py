@@ -26,7 +26,7 @@ def partition(array, low, high):
     return i + 1
 
 # the QuickSort function implementation
-def quickSort(array : list, low : int = 0, high : int = -1) -> list:
+def quickSort(array : list, low : int, high : int) -> list:
     if high == -1:
         high = len(array) - 1
     # base case
@@ -42,9 +42,12 @@ def quickSort(array : list, low : int = 0, high : int = -1) -> list:
     quickSort(array, pi + 1, high)
     return array
 
+def quickSortWrapper(array : list) -> list:
+    return quickSort(array, 0, -1)
+
 if __name__ == "__main__":
     array = [e for e in range(200)]
     from random import shuffle
     shuffle(array)
     n = len(array)
-    print(quickSort(array, 0, n - 1))
+    print(quickSortWrapper(array, 0, n - 1))

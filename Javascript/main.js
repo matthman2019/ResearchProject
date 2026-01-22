@@ -134,7 +134,7 @@ function partition(array, low, high) {
     return i + 1;
 }
 
-function quickSort(array, low=0, high=-1) {
+function quickSort(array, low, high) {
     if (high == -1) {
         high = array.length - 1;
     }
@@ -145,6 +145,10 @@ function quickSort(array, low=0, high=-1) {
     quickSort(array, low, pi-1);
     quickSort(array, pi+1, high);
     return array;
+}
+
+function quickSortWrapped(array) {
+    return quickSort(array, 0, -1)
 }
 
 function merge(array, left, middle, right) {
@@ -203,6 +207,10 @@ function mergeSort(array, left=0, right=-1) {
     return array;
 }
 
+function mergeSortWrapper(array) {
+    return mergeSort(array)
+}
+
 // I though javascript couldn't write files, but it CAN with node.js!
 // gemini is hard carrying this function
 
@@ -231,10 +239,10 @@ function testAlgorithm(algorithm, reps=100, arrayLength = 4096) {
 
 
 function main() {
-    writeToFile(testAlgorithm(quickSort), "Quick Sort");
+    writeToFile(testAlgorithm(quickSortWrapped), "Quick Sort");
     writeToFile(testAlgorithm(insertionSort), "Insertion Sort");
     writeToFile(testAlgorithm(radixSort), "Radix Sort");
-    writeToFile(testAlgorithm(mergeSort), "Merge Sort");
+    writeToFile(testAlgorithm(mergeSortWrapper), "Merge Sort");
     writeToFile(testAlgorithm(bubbleSort), "Bubble Sort");
 }
 

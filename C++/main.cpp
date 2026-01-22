@@ -177,6 +177,10 @@ vector<int> quickSort(vector<int>& array, int low = 0, int high = -1) {
     return array;
 }
 
+vector<int> quickSortWrap(vector<int>& array) {
+    return quickSort(array, 0, -1);
+}
+
 void merge(vector<int>& array, int left, int middle, int right) {
     int n1 = middle - left + 1;
     int n2 = right - middle;
@@ -231,6 +235,10 @@ vector<int> mergeSort(vector<int>& array, int left = 0, int right = -1) {
     return array;
 }
 
+vector<int> mergeSortWrap(vector<int>& array) {
+    return mergeSort(array, 0, -1);
+}
+
 void writeToFile(vector<double> timeList, string algorithmName, string fileName = "C++Output.txt") {
     ofstream File(fileName, std::ios::app);
     File << "====" << algorithmName << "====" << endl;
@@ -246,7 +254,6 @@ void writeToFile(vector<double> timeList, string algorithmName, string fileName 
 // there's probably a more automated way to do this, but I'm not aware of it.
 
 using SortingCallback = vector<int> (*)(vector<int>&);
-using HighLowSortingCallback = vector<int> (*)(vector<int>&, int, int);
 
 vector<double> testAlgorithm(SortingCallback algorithm, int reps = 100, int arrayLength = 4096) {
     vector<double> timeList = {};
@@ -267,34 +274,13 @@ vector<double> testAlgorithm(SortingCallback algorithm, int reps = 100, int arra
     return timeList;
 }
 
-vector<double> testMoreComplicatedAlgorithm(HighLowSortingCallback algorithm, int reps = 100, int arrayLength = 4096) {
-    vector<double> timeList = {};
-    timeList.reserve(reps);
-
-    for (int i = 0; i < reps; i++) {
-        vector<int> e = defaultVector();
-        e = fisherYates(e);
-
-        // notice: I have to give algorithm() more parameters. This differs from the pseudocode.
-        // I bet it won't affect anything time-wise, but it has the potential to.
-        auto begin = chrono::high_resolution_clock::now();
-        algorithm(e, 0, -1);
-        auto end = chrono::high_resolution_clock::now();
-
-        
-        double elapsed = static_cast<double>(chrono::duration_cast<chrono::nanoseconds>(end - begin).count()) / 1000000.0;
-        timeList.push_back(elapsed);
-    }
-    return timeList;
-}
-
 
 // in c++, I don't have to call main()!
 int main() {
-    writeToFile(testMoreComplicatedAlgorithm(quickSort), "Quick Sort");
+    writeToFile(testAlgorithm(quickSortWrap), "Quick Sort");
     writeToFile(testAlgorithm(insertionSort), "Insertion Sort");
     writeToFile(testAlgorithm(radixSort), "Radix Sort");
-    writeToFile(testMoreComplicatedAlgorithm(mergeSort), "Merge Sort");
+    writeToFile(testAlgorithm(mergeSortWrap), "Merge Sort");
     writeToFile(testAlgorithm(bubbleSort), "Bubble Sort");
     return 0;
 }

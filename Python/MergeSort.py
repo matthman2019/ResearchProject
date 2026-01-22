@@ -47,7 +47,7 @@ def merge(array : list, left : int, middle : int, right : int):
 
 
 
-def mergeSort(array : list, left : int = 0, right : int = -1) -> list:
+def mergeSort(array : list, left : int, right : int) -> list:
     # default right parameter
     if right == -1:
         right = len(array) - 1
@@ -61,8 +61,11 @@ def mergeSort(array : list, left : int = 0, right : int = -1) -> list:
     
     return array
 
+def mergeSortWrapper(array : list) -> list:
+    return mergeSort(array, 0, -1)
+
 if __name__ == "__main__":
     from random import shuffle
     for i in range(20):
-        print(mergeSort([e for e in range(30)]))
+        print(mergeSortWrapper([e for e in range(30)]))
     

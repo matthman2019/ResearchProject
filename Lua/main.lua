@@ -176,14 +176,19 @@ local function partition(array, low, high)
 end
 
 local function quickSort(array, low, high)
-    low = low or 1
-    high = high or #array
+    if high == -1 then
+        high = #array
+    end
     if low >= high then return end
 
     local pi = partition(array, low, high)
     quickSort(array, low, pi - 1)
     quickSort(array, pi + 1, high)
     return array
+end
+
+local function quickSortWrapper(array) 
+    return quickSort(array, 1, -1)
 end
 
 local function merge(array, left, middle, right)
@@ -227,8 +232,9 @@ local function merge(array, left, middle, right)
 end
 
 local function mergeSort(array, left, right)
-    left = left or 1
-    right = right or #array
+    if right == -1 then
+        right = #array
+    end
 
     if left < right then
         local middle = (right + left) // 2
@@ -238,6 +244,10 @@ local function mergeSort(array, left, right)
     end
 
     return array
+end
+
+local function mergeSortWrapper(array) 
+    return mergeSort(array, 1,  -1)
 end
 
 local function writeToFile(timeList, algorithmName, fileName)
@@ -271,10 +281,10 @@ local function testAlgorithm(algorithm, reps, arrayLength)
 end
 
 local function main()
-    writeToFile(testAlgorithm(quickSort), "Quick Sort")
+    writeToFile(testAlgorithm(quickSortWrapper), "Quick Sort")
     writeToFile(testAlgorithm(insertionSort), "Insertion Sort")
     writeToFile(testAlgorithm(radixSort), "Radix Sort")
-    writeToFile(testAlgorithm(mergeSort), "Merge Sort")
+    writeToFile(testAlgorithm(mergeSortWrapper), "Merge Sort")
     writeToFile(testAlgorithm(bubbleSort), "Bubble Sort")
 end
 
