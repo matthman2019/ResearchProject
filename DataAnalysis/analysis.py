@@ -35,9 +35,10 @@ if __name__ == "__main__":
     luaDict = openFile(Path("LuaOutput.txt"))
     CPPDict = openFile(Path("C++Output.txt"))
     javaDict = openFile(Path("JavaOutput.txt"))
+    rustDict = openFile(Path("WrongComputer2RustOutput.txt"))
     goDict = openFile(Path("GoOutput.txt"))
 
-    fig, ((ax1, ax2, ax3), (ax4, ax5, ax6)) = plt.subplots(2, 3)
+    fig, ((ax1, ax2, ax3), (ax4, ax5, ax6), (ax7, ax8, ax9)) = plt.subplots(3, 3)
     graphHeight = 500
     
     ax1.bar(list(pythonDict.keys()), list(map(mean, pythonDict.values())), color="blue")
@@ -55,9 +56,13 @@ if __name__ == "__main__":
     ax5.bar(list(javaDict.keys()), list(map(mean, javaDict.values())), color="orange")
     ax5.set_title("Java Output")
     ax5.set_ylim(0, graphHeight)
-    ax6.bar(list(goDict.keys()), list(map(mean, goDict.values())), color="teal")
-    ax6.set_title("Go Output")
+    ax6.bar(list(rustDict.keys()), list(map(mean, rustDict.values())), color="brown")
+    ax6.set_title("Rust Output")
     ax6.set_ylim(0, graphHeight)
+    
+    ax7.bar(list(goDict.keys()), list(map(mean, goDict.values())), color="teal")
+    ax7.set_title("Go Output")
+    ax7.set_ylim(0, graphHeight)
 
 
     print(list(map(mean, pythonDict.values())))
@@ -65,4 +70,5 @@ if __name__ == "__main__":
     print(list(map(mean, luaDict.values())))
     print(list(map(mean, CPPDict.values())))
     print(list(map(mean, goDict.values())))
+    print(list(map(mean, rustDict.values())))
     plt.show()
