@@ -223,7 +223,7 @@ public class Main {
         return array;
     }
 
-    public static ArrayList<Integer> mergeSortWrapper(ArrayList<Integer> array, int left, int right) {
+    public static ArrayList<Integer> mergeSortWrapper(ArrayList<Integer> array) {
         return mergeSort(array, 0, -1);
     }
     

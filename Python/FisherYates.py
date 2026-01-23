@@ -16,7 +16,7 @@ if __name__ == "__main__":
     generatedLists = []
     i = 0
     while True:
-        shuffledList = tuple(fisherYates([e for e in range(0, 10)]))
+        shuffledList = tuple(fisherYates([e for e in range(0, 5)]))
         print(shuffledList)
         if shuffledList in generatedLists:
             print(f"Repeat! It took {i} iterations to repeat a list.")

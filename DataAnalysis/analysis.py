@@ -30,16 +30,16 @@ def openFile(filePath : Path) -> dict:
 
 
 if __name__ == "__main__":
-    pythonDict = openFile(Path("PythonOutput.txt"))
-    javascriptDict = openFile(Path("JavascriptOutput.txt"))
-    luaDict = openFile(Path("LuaOutput.txt"))
-    CPPDict = openFile(Path("C++Output.txt"))
-    javaDict = openFile(Path("JavaOutput.txt"))
-    rustDict = openFile(Path("WrongComputer2RustOutput.txt"))
-    goDict = openFile(Path("GoOutput.txt"))
+    pythonDict = openFile(Path("PythonOutput2.txt"))
+    javascriptDict = openFile(Path("JavascriptOutput2.txt"))
+    luaDict = openFile(Path("LuaOutput2.txt"))
+    CPPDict = openFile(Path("C++Output2.txt"))
+    javaDict = openFile(Path("JavaOutput2.txt"))
+    rustDict = openFile(Path("RustOutput2.txt"))
+    goDict = openFile(Path("GoOutput2.txt"))
 
-    fig, ((ax1, ax2, ax3), (ax4, ax5, ax6), (ax7, ax8, ax9)) = plt.subplots(3, 3)
-    graphHeight = 500
+    fig, ((ax1, ax2, ax3, ax4), (ax5, ax6, ax7, ax8)) = plt.subplots(2, 4)
+    graphHeight = 100
     
     ax1.bar(list(pythonDict.keys()), list(map(mean, pythonDict.values())), color="blue")
     ax1.set_title("Python Output")

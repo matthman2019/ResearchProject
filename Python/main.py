@@ -1,9 +1,9 @@
 from BubbleSort import bubbleSort
 from InsertionSort import insertionSort
-from QuickSort import quickSort
+from QuickSort import quickSortWrapper
 from RadixSort import radixSort
 from FisherYates import fisherYates
-from MergeSort import mergeSort
+from MergeSort import mergeSortWrapper
 
 from time import perf_counter_ns
 # from tqdm import tqdm
@@ -51,7 +51,7 @@ def testAlgorithm(algorithm : Callable[[list], list],
 # That's why this code is so repetitive.
 if __name__ == "__main__":
     
-    quickTimes = testAlgorithm(quickSort)
+    quickTimes = testAlgorithm(quickSortWrapper)
     writeToFile(quickTimes, "Quick Sort")
 
     insertionTimes = testAlgorithm(insertionSort)
@@ -60,7 +60,7 @@ if __name__ == "__main__":
     radixTimes = testAlgorithm(radixSort)
     writeToFile(radixTimes, "Radix Sort")
 
-    mergeTimes = testAlgorithm(mergeSort)
+    mergeTimes = testAlgorithm(mergeSortWrapper)
     writeToFile(mergeTimes, "Merge Sort")
 
     bubbleTimes = testAlgorithm(bubbleSort)
