@@ -35,6 +35,7 @@ if __name__ == "__main__":
     luaDict = openFile(Path("LuaOutput.txt"))
     CPPDict = openFile(Path("C++Output.txt"))
     javaDict = openFile(Path("JavaOutput.txt"))
+    goDict = openFile(Path("GoOutput.txt"))
 
     fig, ((ax1, ax2, ax3), (ax4, ax5, ax6)) = plt.subplots(2, 3)
     graphHeight = 500
@@ -54,11 +55,14 @@ if __name__ == "__main__":
     ax5.bar(list(javaDict.keys()), list(map(mean, javaDict.values())), color="orange")
     ax5.set_title("Java Output")
     ax5.set_ylim(0, graphHeight)
+    ax6.bar(list(goDict.keys()), list(map(mean, goDict.values())), color="teal")
+    ax6.set_title("Go Output")
+    ax6.set_ylim(0, graphHeight)
 
 
     print(list(map(mean, pythonDict.values())))
     print(list(map(mean, javascriptDict.values())))
     print(list(map(mean, luaDict.values())))
     print(list(map(mean, CPPDict.values())))
-    print(list(map(mean, javaDict.values())))
+    print(list(map(mean, goDict.values())))
     plt.show()
