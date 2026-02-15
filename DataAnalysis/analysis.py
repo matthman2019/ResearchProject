@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
-from statistics import mean
+from statistics import mean, stdev
 
 def openFile(filePath : Path) -> dict:
     sortReading = ''
@@ -27,9 +27,48 @@ def openFile(filePath : Path) -> dict:
 
     return returnDict
 
+graphHeight = 10
+def loadData(graph, filename : Path, language : str, color : str):
+    global graphHeight
+    loadedDictionary = openFile(filename)
+    meanList = list(map(mean, loadedDictionary.values()))
+    stdDevList = list(map(stdev, loadedDictionary.values()))
+    sampleSize = len(loadedDictionary["Bubble"])
+    stdErrList = list(map(lambda x: x / sampleSize, stdDevList))
+    graph.bar(list(loadedDictionary.keys()), meanList, yerr=stdErrList, color=color)
+    graph.set_title(f"{language} Output")
+    graph.set_ylim(0, graphHeight)
 
+    print(f"{language}: {stdErrList}")
+
+colorDict = {
+    "Python" : "blue",
+    "PyPy" : "mediumblue",
+    "Javascript" : "red",
+    "Lua" : "skyblue",
+    "LuaJIT" : "deepskyblue",
+    "C++" : "green",
+    "Java" : "orange",
+    "Rust" : "brown",
+    "Go" : "teal",
+    "Perl" : "khaki"
+}
 
 if __name__ == "__main__":
+    fig, ((ax1, ax2, ax3, ax4, ax5), (ax6, ax7, ax8, ax9, ax10)) = plt.subplots(2, 5)
+    axList = [ax1, ax2, ax3, ax4, ax5, ax6, ax7, ax8, ax9, ax10]
+    fileList : list[Path] = []
+    for file in Path(__file__).parent.iterdir():
+        if not file.is_file():
+            continue
+        if file.suffix == ".txt":
+            fileList.append(file)
+    
+    for file, graph in zip(fileList, axList):
+        languageName = file.name.removesuffix("Output.txt")
+        loadData(graph, file, languageName, colorDict[languageName])
+
+    '''
     pythonDict = openFile(Path("PythonOutput2.txt"))
     javascriptDict = openFile(Path("JavascriptOutput2.txt"))
     luaDict = openFile(Path("LuaOutput2.txt"))
@@ -39,7 +78,6 @@ if __name__ == "__main__":
     goDict = openFile(Path("GoOutput2.txt"))
     perlDict = openFile(Path("PerlOutput2.txt"))
 
-    fig, ((ax1, ax2, ax3, ax4), (ax5, ax6, ax7, ax8)) = plt.subplots(2, 4)
     graphHeight = 100
     
     ax1.bar(list(pythonDict.keys()), list(map(mean, pythonDict.values())), color="blue")
@@ -66,6 +104,9 @@ if __name__ == "__main__":
     ax8.bar(list(perlDict.keys()), list(map(mean, perlDict.values())), color="pink")
     ax8.set_title("Perl Output")
     ax8.set_ylim(0, graphHeight)
+    '''
+  
+    '''
 
 
     print(list(map(mean, pythonDict.values())))
@@ -76,4 +117,6 @@ if __name__ == "__main__":
     print(list(map(mean, goDict.values())))
     print(list(map(mean, rustDict.values())))
     print(list(map(mean, perlDict.values())))
+    '''
+
     plt.show()

@@ -240,7 +240,7 @@ sys.setrecursionlimit(4097)
 # since they write files in different ways.
 def writeToFile(timeList : list, 
                 algorithmName : str, 
-                fileName : str = "PythonOutput.txt"):
+                fileName : str = "PyPyOutput.txt"):
     with open(fileName, 'a') as file:
         file.write(f"===={algorithmName}====\n")
 
