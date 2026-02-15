@@ -37,6 +37,7 @@ if __name__ == "__main__":
     javaDict = openFile(Path("JavaOutput2.txt"))
     rustDict = openFile(Path("RustOutput2.txt"))
     goDict = openFile(Path("GoOutput2.txt"))
+    perlDict = openFile(Path("PerlOutput2.txt"))
 
     fig, ((ax1, ax2, ax3, ax4), (ax5, ax6, ax7, ax8)) = plt.subplots(2, 4)
     graphHeight = 100
@@ -62,6 +63,9 @@ if __name__ == "__main__":
     ax7.bar(list(goDict.keys()), list(map(mean, goDict.values())), color="teal")
     ax7.set_title("Go Output")
     ax7.set_ylim(0, graphHeight)
+    ax8.bar(list(perlDict.keys()), list(map(mean, perlDict.values())), color="pink")
+    ax8.set_title("Perl Output")
+    ax8.set_ylim(0, graphHeight)
 
 
     print(list(map(mean, pythonDict.values())))
@@ -71,4 +75,5 @@ if __name__ == "__main__":
     print(list(map(mean, javaDict.values())))
     print(list(map(mean, goDict.values())))
     print(list(map(mean, rustDict.values())))
+    print(list(map(mean, perlDict.values())))
     plt.show()
