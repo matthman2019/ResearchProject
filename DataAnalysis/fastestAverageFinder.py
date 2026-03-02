@@ -1,5 +1,6 @@
 from pathlib import Path
 from statistics import mean
+from numpy import log10
 
 def openFile(filePath : Path) -> dict:
     sortReading = ''
@@ -43,10 +44,13 @@ def main():
     languageScore : list[tuple[str, float]] = []
     for language in languageToData.keys():
         averageList = []
+        logAverageList = []
         for data in languageToData[language].values():
+            logData = list(map(log10, data))
             averageList.append(mean(data))
+            logAverageList.append(mean(logData))
         try:
-            languageScore.append((language, mean(averageList)))
+            languageScore.append((language, mean(averageList), mean(logAverageList)))
         except Exception as e:
             print(f'There was an error with file {language}! {e}')
 
